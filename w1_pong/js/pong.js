@@ -90,14 +90,14 @@ function main()
     {
         ball.x = c.width/2
         ball.y  =c.height/2
-        ball.vx = -1.2;
+        ball.vx = -1.5;
     }
     if(ball.x > c.width)
     {
         ball.x = c.width/2;  
         ball.y = c.height/2;   
         ball.vx = -ball.vx;
-        ball.vx = -1.2;
+        ball.vx = -1.5;
     }
     if(ball.y < 0)
     {
