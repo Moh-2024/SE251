@@ -13,14 +13,22 @@ var p1 = new Box();
 p1.w = 20
 p1.h = 150
 p1.x = 0 + p1.w/2
+p1.color = `yellow`
+
+//p2 setup
+var p2 = new Box();
+p2.w = 20
+p2.h = 150
+p2.x = c.width - p2.w/2
+p2.color = `red`
 
 //ball setup
 var ball = new Box();
-ball.w = 20
-ball.h = 20
+ball.w = 15
+ball.h = 15
 ball.vx = -2
 ball.vy = -2
-ball.color = `black`
+ball.color = `white`
 
 function main()
 {
@@ -37,10 +45,22 @@ function main()
     {
         p1.vy += p1.force
     }
+
+    if(keys[`ArrowUp`])
+    {
+        p2.vy += -p2.force
+    }
+
+    if(keys[`ArrowDown`])
+    {
+        p2.vy += p2.force
+    }
     //applies friction
     p1.vy *= fy
+    p2.vy *= fy
     //player movement
     p1.move();
+    p2.move();
 
     //ball movement
     ball.move()
@@ -55,16 +75,29 @@ function main()
         p1.y = c.height-p1.h/2
     }
 
+    //p2 collison
+    if(p2.y < 0+p2.h/2)
+    {
+        p2.y = 0+p2.h/2
+    }
+    if(p2.y > c.height-p2.h/2)
+    {
+        p2.y = c.height-p2.h/2
+    }
+
     //ball collision 
     if(ball.x < 0)
     {
         ball.x = c.width/2
         ball.y  =c.height/2
+        ball.vx = -1.2;
     }
     if(ball.x > c.width)
     {
-        ball.x = c.width
-        ball.vx = -ball.vx
+        ball.x = c.width/2;  
+        ball.y = c.height/2;   
+        ball.vx = -ball.vx;
+        ball.vx = -1.2;
     }
     if(ball.y < 0)
     {
@@ -82,10 +115,18 @@ function main()
     if(ball.collide(p1))
     {
         ball.x = p1.x + p1.w/2 + ball.w/2
-        ball.vx = -ball.vx;
+        ball.vx *= -1.2;
+    }
+
+    //p2 with ball collision
+    if(ball.collide(p2))
+    {
+        ball.x = p2.x - p2.w/2 - ball.w/2
+        ball.vx *= -1.2;
     }
 
     //draw the objects
     p1.draw()
+    p2.draw()
     ball.draw()
 }
