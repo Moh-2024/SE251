@@ -43,6 +43,9 @@ ball.vx = -2
 ball.vy = -2
 ball.color = `white`
 
+const scoreDiv = document.querySelectorAll('#score div');
+
+
 
 function main()
 {
@@ -79,24 +82,17 @@ function main()
     //ball movement
     ball.move()
 
-    //p1 collision
-    if(pad[0].y < 0+pad[0].h/2)
+    //player collison
+    for(let i = 0; i < pad.length; i++)
     {
-        pad[0].y = 0+pad[0].h/2
-    }
-    if(pad[0].y > c.height-pad[0].h/2)
-    {
-        pad[0].y = c.height-pad[0].h/2
-    }
-
-    //p2 collison
-    if(pad[1].y < 0+pad[1].h/2)
-    {
-        pad[1].y = 0+pad[1].h/2
-    }
-    if(pad[1].y > c.height-pad[1].h/2)
-    {
-        pad[1].y = c.height-pad[1].h/2
+        if(pad[i].y < 0+pad[i].h/2)
+        {
+            pad[i].y = 0+pad[i].h/2
+        }
+        if(pad[i].y > c.height-pad[i].h/2)
+        {
+            pad[i].y = c.height-pad[i].h/2
+        }
     }
 
     //ball collision 
@@ -105,9 +101,9 @@ function main()
         ball.x = c.width/2
         ball.y  =c.height/2
         ball.vx = -1.5;
-        score.score++;
+        player[1].score++;
+        console.log(player[1])
 
-        
     }
     if(ball.x > c.width)
     {
@@ -115,6 +111,8 @@ function main()
         ball.y = c.height/2;   
         ball.vx = -ball.vx;
         ball.vx = -1.5;
+        player[0].score++;
+        console.log(player[0])
     }
     if(ball.y < 0)
     {
@@ -127,7 +125,6 @@ function main()
         ball.vy = -ball.vy
        
     }
-
     //p1 with ball collision
     if(ball.collide(pad[0]))
     {
@@ -142,9 +139,17 @@ function main()
         ball.vx *= -1.2;
     }
 
+    for(let i = 0; i < pad.length;i++)
+    {
+        pad[i].draw()
+    }
     //draw the objects
-    pad[0].draw()
-    pad[1].draw()
     ball.draw()
+
+    // Display the scores inside the canvas with big font
+    ctx.fillStyle = 'white';
+    ctx.font = '48px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${player[0].score} | ${player[1].score}`, c.width / 2, 50);
 
 }

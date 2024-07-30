@@ -1,9 +1,9 @@
 class Player{
     constructor()
     {
-        this.name = ``;
+        this.name
         this.score = 0;
-        this.highScore = 0;
+        this.highScore
         this.pad = new Box();
     }
 }

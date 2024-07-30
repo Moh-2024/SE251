@@ -4,3 +4,10 @@ canvas{
     border:1px solid white;
     background-color: black;
 }
+#score div{
+    color: white;
+    background-color: black;
+    font-size: 40px;
+    text-align: center;
+    display: inline;
+}
