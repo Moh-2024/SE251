@@ -30,29 +30,6 @@ fillInputs.forEach((input, i) => {
     });
 });
 
-
-/*
-document.querySelectorAll(`.op`).forEach((playerSettings, i) =>{
-const outputs = playerSettings.querySelectorAll(".output");
-const fill = playerSettings.querySelectorAll(".fll");
-const stroke = playerSettings.querySelectorAll(".stroke");
-
-fill.value = player[i].fill;
-stroke.value = player[i].stroke;
-
-outputs[0].innerHTML = fill.value;
-outputs[1].innerHTML = stroke.value;
-
-stroke.addEventListener(`input`, (e) => {
-    player[i].pad.stroke = e.target.value;
-    outputs[i].innerHTML = e.target.value;
-})
-fill.addEventListener(`input`, (e) =>{
-    player[i].pad.fill = e.target.value;
-    outputs[0].innerHTML = e.target.value;
-})
-});
-
 /*---------
     Program the six key inputs to do the following:
     . Display the correct key names for each player   
