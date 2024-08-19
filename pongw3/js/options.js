@@ -16,6 +16,23 @@ document.querySelector("#options h2").onclick = function() {
         . Show the fill's hex code in the output div 
 
 -----------*/
+const fillInputs = document.querySelectorAll('.fill');
+const outputDivs = document.querySelectorAll('.output');
+
+fillInputs.forEach((input, i) => {
+    
+    input.value = player[i].filll;
+    outputDivs[i].innerHTML = player[i].fill;
+
+    // Add an input event listener to each fill input
+    input.addEventListener('input', e => {
+        const playerIndex = Array.from(fillInputs).indexOf(e.target);
+        player[playerIndex].setProps({ fill: e.target.value });
+
+        outputDivs[playerIndex].innerHTML = e.target.value;
+
+    });
+});
 
 /*---------
     Program the six key inputs to do the following:
