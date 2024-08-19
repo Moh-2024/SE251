@@ -20,18 +20,37 @@ const fillInputs = document.querySelectorAll('.fill');
 const outputDivs = document.querySelectorAll('.output');
 
 fillInputs.forEach((input, i) => {
-    
-    input.value = player[i].filll;
-    outputDivs[i].innerHTML = player[i].fill;
+    input.value = player[i].fill;
+    outputDivs[i * 2].innerHTML = player[i].fill;
 
-    // Add an input event listener to each fill input
     input.addEventListener('input', e => {
         const playerIndex = Array.from(fillInputs).indexOf(e.target);
-        player[playerIndex].setProps({ fill: e.target.value });
-
-        outputDivs[playerIndex].innerHTML = e.target.value;
-
+        player[playerIndex].updateFill(e.target.value);
+        outputDivs[playerIndex * 2].innerHTML = e.target.value;
     });
+});
+
+
+/*
+document.querySelectorAll(`.op`).forEach((playerSettings, i) =>{
+const outputs = playerSettings.querySelectorAll(".output");
+const fill = playerSettings.querySelectorAll(".fll");
+const stroke = playerSettings.querySelectorAll(".stroke");
+
+fill.value = player[i].fill;
+stroke.value = player[i].stroke;
+
+outputs[0].innerHTML = fill.value;
+outputs[1].innerHTML = stroke.value;
+
+stroke.addEventListener(`input`, (e) => {
+    player[i].pad.stroke = e.target.value;
+    outputs[i].innerHTML = e.target.value;
+})
+fill.addEventListener(`input`, (e) =>{
+    player[i].pad.fill = e.target.value;
+    outputs[0].innerHTML = e.target.value;
+})
 });
 
 /*---------
@@ -42,3 +61,18 @@ fillInputs.forEach((input, i) => {
         .Change the player's key to the value of the input
         .Show the player's key in the output div 
 -----------*/
+/*const uInput = document.querySelectorAll(`.u`);
+const oDivs = document.querySelectorAll('.output');
+uInput.forEach((input, i) => {
+    uInput.value = player.keys;
+    oDivs.innerHTML = player.keys;
+})
+
+const handleKeydown = (e, input, playerIndex) => {
+    e.preventDefault(); // Prevent default action to avoid unwanted behavior
+    const keyName = e.key; // Get the name of the pressed key
+    input.value = keyName; // Set the input's value to the pressed key
+    player[playerIndex].props({ keys: { ...player[playerIndex].props.keys, u: keyName } }); // Update the player's keys
+    oDivs[playerIndex].innerHTML = `UP: ${keyName}`; // Update the output div
+}
+*/
