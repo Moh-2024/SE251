@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+ <body> 
+ Input Test <input name="email" type="text" /> 
+ <script> 
+   let email = document.querySelector('input[name=email]') 
+   email.addEventListener('blur', checkInput)
+ 
+ function checkInput() {
+   console.log(this.value)
+   this.value = 'test@test.com'
+   this.value = this.value.replace('test','hello')
+ } 
+ </script> 
+ </body>
+</html>
