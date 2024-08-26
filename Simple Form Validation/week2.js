@@ -14,41 +14,72 @@ document.querySelector('input[type="button"]').addEventListener('click', e =>  {
     let isValid = true;
     
     // Clear previous error messages
-    fnError = document.querySelector('#fn-error').textContent = '';
-    lnError = document.querySelector('#ln-error').textContent = '';
-    emailError = document.querySelector('#email-error').textContent = '';
-    phoneError = document.querySelector('#phone-error').textContent = '';
+    document.querySelector('#fn-error').textContent = '';
+    document.querySelector('#ln-error').textContent = '';
+    document.querySelector('#email-error').textContent = '';
+    document.querySelector('#phone-error').textContent = '';
+
+    //clear red tags
+    fnLbl = document.querySelector('#fnLabel').style.color = 'black'
+    lnLbl = document.querySelector('#lnLabel').style.color = 'black'
+    emailLbl = document.querySelector('#emailLabel').style.color = 'black'
+    phLbl = document.querySelector('#phLabel').style.color = 'black'
     
     // Validate First Name
     if(firstName === '')
     {
-        document.querySelectorAll('p').style.color = 'red';
+        const fnError = document.querySelector('#fn-error');
+        const fnLabel = document.querySelector('#fnLabel')
+        fnLabel.style.color = 'red';
+        fnError.textContent = '*';
+        fnError.style.color = 'red';
         isValid = false;
     }
     else if (!regName.test(firstName)) {
-        document.querySelector('#fn-error').textContent = 'Invalid first name. Only letters are allowed.';
+        const fnError = document.querySelector('#fn-error');
+        const fnLabel = document.querySelector('#fnLabel');
+        fnLabel.style.color = 'red';
+
+        fnError.textContent = 'Invalid first name.';
+        fnError.style.color = 'red'
         isValid = false;
     }
     // Validate Last Name
     if(lastName === '')
     {
-        document.querySelectorAll('p').style.color = 'red';
+        const lnError = document.querySelector('#ln-error');
+        const lnLabel = document.querySelector('#lnLabel')
+        lnLabel.style.color = 'red';
+        lnError.textContent = '*';
+        lnError.style.color = 'red';
         isValid = false;
     }
     else if (!regName.test(lastName)) {
-        document.querySelector('#ln-error').textContent = 'Invalid last name. Only letters are allowed.';
+        const lnError = document.querySelector('#ln-error');
+        const lnLabel = document.querySelector('#lnLabel')
+        lnLabel.style.color = 'red';
+        lnError.textContent = 'Invalid last name.';
+        lnError.style.color = 'red'
         isValid = false;
     }
     
     // Validate Email
     if (!regEmail.test(Email)) {
-        document.querySelector('#email-error').textContent = 'Invalid email format.';
+        const emailError = document.querySelector('#email-error');
+        const emailLabel = document.querySelector('#emailLabel')
+        emailLabel.style.color = 'red';
+        emailError.textContent = 'Invalid email format.';
+        emailError.style.color = 'red';
         isValid = false;
     }
     
     // Validate Phone Number
     if (!regPhone.test(phone)) {
-        document.querySelector('#phone-error').textContent = 'Invalid phone number. Should be 10 to 15 digits.';
+        const phoneError = document.querySelector('#phone-error')
+        const phLabel = document.querySelector('#phLabel')
+        phLabel.style.color = 'red';
+        phoneError.textContent = 'Invalid phone number.';
+        phoneError.style.color = 'red'
         isValid = false;
     }
     // Display confirmation if all fields are valid
@@ -61,6 +92,7 @@ document.querySelector('input[type="button"]').addEventListener('click', e =>  {
         `;
         document.querySelector('#info').innerHTML = person;
         document.querySelector('#confirmation').style.display = 'block'; // Show confirmation div
+        document.querySelector('#form').style.display = 'none';
     } else {
         // Optionally, hide confirmation div if there are validation errors
         document.querySelector('#confirmation').style.display = 'none';
