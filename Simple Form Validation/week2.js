@@ -3,6 +3,7 @@ document.querySelector('input[type="button"]').addEventListener('click', e =>  {
     const firstName = document.querySelector('#first-name').value.trim();
     const lastName = document.querySelector('#last-name').value.trim();
     const Email = document.querySelector('#email').value.trim();
+    const ConfirmEmail = document.querySelector('#emailConfirm').value.trim()
     const phone = document.querySelector('#phone').value.trim();
     
     // regex
@@ -23,6 +24,7 @@ document.querySelector('input[type="button"]').addEventListener('click', e =>  {
     fnLbl = document.querySelector('#fnLabel').style.color = 'black'
     lnLbl = document.querySelector('#lnLabel').style.color = 'black'
     emailLbl = document.querySelector('#emailLabel').style.color = 'black'
+    emailbl2 = document.querySelector('#emailLabel2').style.color = 'black'
     phLbl = document.querySelector('#phLabel').style.color = 'black'
     
     // Validate First Name
@@ -71,6 +73,15 @@ document.querySelector('input[type="button"]').addEventListener('click', e =>  {
         emailError.textContent = 'Invalid email format.';
         emailError.style.color = 'red';
         isValid = false;
+    }
+    if(Email !== ConfirmEmail ){
+        const emailError = document.querySelector('#email-error2');
+        const emailLabel2 = document.querySelector('#emailLabel2');
+
+        emailError.textContent = 'Email does not match';
+        emailLabel2.style.color = 'red';
+        isValid = false;
+
     }
     
     // Validate Phone Number
